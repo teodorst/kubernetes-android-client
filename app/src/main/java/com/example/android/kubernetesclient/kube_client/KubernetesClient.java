@@ -38,11 +38,10 @@ public class KubernetesClient {
                 List<Pod> pods = new ArrayList<>();
                 if (response.body() != null) {
                     for (KubernetesResourceResponse.KubeResource item : response.body().getItems()) {
-                        pods.add(new Pod(item.getMetadata().getName(), item.getMetadata().getNamespace(), item.getMetadata().getUid(),
-                                item.getMetadata().getCreationTimestamp(), item.status.getStatus()));
-                        Log.d("Item", item.getMetadata().getName());
+                        Pod pod = new Pod(item.getMetadata().getName(), item.getMetadata().getNamespace(), item.getMetadata().getUid(),
+                                item.getMetadata().getCreationTimestamp(), item.status.getStatus());
+                        pods.add(pod);
                     }
-                    Log.d("Item", response.body().toString());
                 }
 
 

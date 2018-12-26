@@ -1,10 +1,13 @@
 package com.example.android.kubernetesclient.models;
 
+import android.util.Log;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Pod {
+public class Pod implements Serializable {
     private String name;
     private String namespace;
     private String uid;
@@ -26,11 +29,12 @@ public class Pod {
         this.status = status;
 
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddThh:mm:ssZ");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
             Date parsedDate = dateFormat.parse(createdTimestampString);
             this.createdTimestamp = new Timestamp(parsedDate.getTime());
         } catch(Exception e) { //this generic but you can control another types of exception
             // look the origin of excption
+            Log.e("time nu merge", e.toString());
         }
     }
 

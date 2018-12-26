@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KubernetesClient</string>
+    <string name="pod_name">Pod\'s name</string>
+    <string name="info">i</string>
+    <string name="placeholder">placeholder</string>
+    <string name="name">Name:</string>
+    <string name="uid">UID:</string>
+    <string name="namespace">Namespace:</string>
+    <string name="created_at">Created At:</string>
+    <string name="status">Status:</string>
 </resources>

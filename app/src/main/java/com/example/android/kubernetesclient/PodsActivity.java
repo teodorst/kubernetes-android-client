@@ -1,8 +1,11 @@
 package com.example.android.kubernetesclient;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.android.kubernetesclient.adapters.PodsAdapter;
@@ -22,6 +25,7 @@ public class PodsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pods);
 
         loadPods();
+        setGridListener();
     }
 
     public void loadPods() {
@@ -29,5 +33,17 @@ public class PodsActivity extends AppCompatActivity {
         podsGridView.setAdapter(new PodsAdapter(this));
         new KubernetesClient().getPods(podsGridView);
     }
-}
 
+    public void setGridListener() {
+        final GridView podsGridView = findViewById(R.id.pod_gridview);
+        podsGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Pod clickedPod = (Pod)podsGridView.getAdapter().getItem(position);
+                Intent intent = new Intent(getBaseContext(), PodActivity.class);
+                intent.putExtra("pod", clickedPod);
+                startActivity(intent);
+            }
+        });
+    }
+}

@@ -1,14 +1,13 @@
 package com.example.android.kubernetesclient.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.android.kubernetesclient.R;
 import com.example.android.kubernetesclient.models.Pod;
 
@@ -23,6 +22,7 @@ public class PodsAdapter extends BaseAdapter {
     public class Holder {
         TextView textView;
         ImageView imageView;
+        ImageView statusImageView;
     }
 
     public PodsAdapter(Context c) {
@@ -70,6 +70,7 @@ public class PodsAdapter extends BaseAdapter {
 
         holder.textView = itemView.findViewById(R.id.item_text);
         holder.imageView = itemView.findViewById(R.id.item_image);
+        holder.statusImageView = itemView.findViewById(R.id.pod_status_image);
 
         holder.textView.setText(pods.get(position).getName());
 
@@ -79,16 +80,7 @@ public class PodsAdapter extends BaseAdapter {
         } else {
             podImageResourceId = R.drawable.error;
         }
-        holder.imageView.setImageResource(podImageResourceId);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //   TODO Auto-generated method stub
-                Toast.makeText(c, "You Clicked "+ pods.get(position).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.statusImageView.setImageResource(podImageResourceId);
 
         return itemView;
     }
