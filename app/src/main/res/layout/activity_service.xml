@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServiceActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="361dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/service_name_label"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/service"
+                android:textAlignment="viewEnd" />
+
+            <TextView
+                android:id="@+id/service_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail_name"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_uid_label"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/uid"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_uid"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_namespace_label"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/namespace"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_namespace"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_createdat_label"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/created_at"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_createdat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_ip_type"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_ip"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_protocol_label"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/protocol"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_protocol"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_port_label"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/port"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_port"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_marginTop="@dimen/detailed_margin_top"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/service_target_port_label"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/targetPort"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/service_detail"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_target_port"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/service_detail" />
+        </LinearLayout>
+
+    </LinearLayout>
+    
+</android.support.constraint.ConstraintLayout>

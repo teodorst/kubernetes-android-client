@@ -12,10 +12,6 @@ public class KubernetesResourceResponse {
         return items;
     }
 
-    public void setItems(List<KubeResource> items) {
-        this.items = items;
-    }
-
     class KubeResource {
 
         @SerializedName("metadata")
@@ -24,12 +20,11 @@ public class KubernetesResourceResponse {
         @SerializedName("status")
         KubeStatusResource status;
 
+        @SerializedName("spec")
+        KubeSpecResource spec;
+
         public KubeMetadataResource getMetadata() {
             return metadata;
-        }
-
-        public void setMetadata(KubeMetadataResource metadata) {
-            this.metadata = metadata;
         }
 
         public KubeStatusResource getStatus() {
@@ -39,6 +34,11 @@ public class KubernetesResourceResponse {
         public void setStatus(KubeStatusResource status) {
             this.status = status;
         }
+
+        public KubeSpecResource getSpec() {
+            return spec;
+        }
+
     }
 
     class KubeMetadataResource {
@@ -80,21 +80,60 @@ public class KubernetesResourceResponse {
             return creationTimestamp;
         }
 
-        public void setCreationTimestamp(String creationTimestamp) {
-            this.creationTimestamp = creationTimestamp;
-        }
     }
 
     class KubeStatusResource {
         @SerializedName("phase")
         String phase;
 
-        public String getStatus() {
+        public String getPhase() {
             return phase;
         }
+    }
 
-        public void setStatus(String status) {
-            this.phase = status;
+    class KubeSpecResource {
+
+        @SerializedName("ports")
+        List<KubePortResource> ports;
+
+        @SerializedName("clusterIP")
+        String clusterIP;
+
+        @SerializedName("type")
+        String type;
+
+        class KubePortResource {
+            @SerializedName("protocol")
+            String protocol;
+            @SerializedName("port")
+            Integer port;
+            @SerializedName("targetPort")
+            Integer targetPort;
+
+            public String getProtocol() {
+                return protocol;
+            }
+
+            public Integer getPort() {
+                return port;
+            }
+
+            public Integer getTargetPort() {
+                return targetPort;
+            }
+        }
+
+        public List<KubePortResource> getPorts() {
+            return ports;
+        }
+
+        public String getClusterIP() {
+            return clusterIP;
+        }
+
+        public String getType() {
+            return type;
         }
     }
+
 }

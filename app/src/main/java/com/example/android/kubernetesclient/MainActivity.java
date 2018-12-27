@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button services = findViewById(R.id.podsButton);
-        podsButton.setOnClickListener(new View.OnClickListener() {
+        Button servicesButton = findViewById(R.id.servicesButton);
+        servicesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PodsActivity.class);
+                Intent intent = new Intent(getBaseContext(), ServicesActivity.class);
                 startActivity(intent);
             }
         });

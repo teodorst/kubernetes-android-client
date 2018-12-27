@@ -8,4 +8,8 @@
     <string name="namespace">Namespace:</string>
     <string name="created_at">Created At:</string>
     <string name="status">Status:</string>
+    <string name="protocol">Protocol:</string>
+    <string name="port">Port:</string>
+    <string name="targetPort">Target Port:</string>
+
 </resources>

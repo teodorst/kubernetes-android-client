@@ -3,8 +3,11 @@ package com.example.android.kubernetesclient.kube_client;
 import android.util.Log;
 import android.widget.GridView;
 
+import com.example.android.kubernetesclient.ServicesActivity;
 import com.example.android.kubernetesclient.adapters.PodsAdapter;
+import com.example.android.kubernetesclient.adapters.ServicesAdapter;
 import com.example.android.kubernetesclient.models.Pod;
+import com.example.android.kubernetesclient.models.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +31,7 @@ public class KubernetesClient {
     }
 
     public void getPods(final GridView podsGridView) {
-        Call<KubernetesResourceResponse> call = this.service.listPods();
+        Call<KubernetesResourceResponse> call = this.service.getPods();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {
             @Override
@@ -39,7 +42,7 @@ public class KubernetesClient {
                 if (response.body() != null) {
                     for (KubernetesResourceResponse.KubeResource item : response.body().getItems()) {
                         Pod pod = new Pod(item.getMetadata().getName(), item.getMetadata().getNamespace(), item.getMetadata().getUid(),
-                                item.getMetadata().getCreationTimestamp(), item.status.getStatus());
+                                item.getMetadata().getCreationTimestamp(), item.getStatus().getPhase());
                         pods.add(pod);
                     }
                 }
@@ -54,8 +57,47 @@ public class KubernetesClient {
 
             @Override
             public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
-
+                Log.e("Error getting pods:", t.toString());
             }
         });
     }
+
+    public void getServices(final GridView servicesGridView) {
+        Call<KubernetesResourceResponse> call = this.service.getServices();
+        Log.d("Item", "Pornesc call");
+        call.enqueue(new Callback<KubernetesResourceResponse>() {
+            @Override
+            public void onResponse(Call<KubernetesResourceResponse> call,
+                                   Response<KubernetesResourceResponse> response) {
+
+                List<Service> services = new ArrayList<>();
+                if (response.body() != null) {
+                    for (KubernetesResourceResponse.KubeResource item : response.body().getItems()) {
+                        Service service = new Service(item.getMetadata().getName(),
+                                item.getMetadata().getNamespace(), item.getMetadata().getUid(),
+                                item.getMetadata().getCreationTimestamp(),
+                                item.getSpec().getClusterIP(),
+                                item.getSpec().getType(),
+                                item.getSpec().getPorts().get(0).getProtocol(),
+                                item.getSpec().getPorts().get(0).getPort(),
+                                item.getSpec().getPorts().get(0).getTargetPort());
+                        services.add(service);
+                    }
+                }
+
+
+                if (!services.isEmpty()) {
+                    ServicesAdapter adapter = (ServicesAdapter) servicesGridView.getAdapter();
+                    adapter.setServices(services);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
+                Log.e("Error getting pods:", t.toString());
+            }
+        });
+    }
+
 }

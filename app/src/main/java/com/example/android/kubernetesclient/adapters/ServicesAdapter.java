@@ -5,48 +5,55 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
 import com.example.android.kubernetesclient.R;
-import com.example.android.kubernetesclient.models.Pod;
+import com.example.android.kubernetesclient.models.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PodsAdapter extends BaseAdapter {
+import static android.view.View.INVISIBLE;
+
+public class ServicesAdapter extends BaseAdapter {
+
     private Context c;
-    private List<Pod> pods;
+    private List<Service> services;
     private static LayoutInflater inflater=null;
 
-    public PodsAdapter(Context c) {
+    public ServicesAdapter(Context c) {
         this.c = c;
-        this.pods = new ArrayList<>();
+        this.services = new ArrayList<>();
         this.inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public PodsAdapter(Context c, List<Pod> pods) {
+    public ServicesAdapter(Context c, List<Service> services) {
         this(c);
-        this.pods = pods;
+        this.services = services;
     }
 
-    public void setPods(List<Pod> pods) {
-        this.pods = pods;
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
     public int getCount() {
-        return pods.size();
+        return services.size();
     }
 
     public Object getItem(int position) {
-        return pods.get(position);
+        return services.get(position);
     }
 
     public long getItemId(int position) {
-        return pods.get(position).hashCode();
+        return services.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = new Holder();
         View itemView;
-
 
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
@@ -59,17 +66,11 @@ public class PodsAdapter extends BaseAdapter {
         holder.imageView = itemView.findViewById(R.id.item_image);
         holder.statusImageView = itemView.findViewById(R.id.status_image);
 
-        holder.textView.setText(pods.get(position).getName());
-
-        int podImageResourceId;
-        if (pods.get(position).isRunning()) {
-            podImageResourceId = R.drawable.success;
-        } else {
-            podImageResourceId = R.drawable.error;
-        }
-        holder.statusImageView.setImageResource(podImageResourceId);
-        holder.imageView.setImageResource(R.drawable.pod);
+        holder.textView.setText(services.get(position).getName());
+        holder.statusImageView.setVisibility(View.GONE);
+        holder.imageView.setImageResource(R.drawable.service);
 
         return itemView;
     }
+
 }
