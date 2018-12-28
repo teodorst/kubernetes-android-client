@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setMenuClickListeners();
     }
 
-
     public void setMenuClickListeners() {
         Button podsButton = findViewById(R.id.podsButton);
         podsButton.setOnClickListener(new View.OnClickListener() {
