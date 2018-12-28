@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pod_detail">20sp</dimen>
-    <dimen name="pod_detail_name">25sp</dimen>
-    <dimen name="service_detail">20sp</dimen>
-    <dimen name="service_detail_name">25sp</dimen>
+    <dimen name="item_detail">20sp</dimen>
+    <dimen name="item_detail_name">25sp</dimen>
     <dimen name="detailed_margin_top">5dp</dimen>
 </resources>

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         nodesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PodsActivity.class);
+                Intent intent = new Intent(getBaseContext(), NodesActivity.class);
                 startActivity(intent);
             }
         });

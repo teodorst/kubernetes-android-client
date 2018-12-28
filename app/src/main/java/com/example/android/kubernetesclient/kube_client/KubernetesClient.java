@@ -3,9 +3,10 @@ package com.example.android.kubernetesclient.kube_client;
 import android.util.Log;
 import android.widget.GridView;
 
-import com.example.android.kubernetesclient.ServicesActivity;
+import com.example.android.kubernetesclient.adapters.NodesAdapter;
 import com.example.android.kubernetesclient.adapters.PodsAdapter;
 import com.example.android.kubernetesclient.adapters.ServicesAdapter;
+import com.example.android.kubernetesclient.models.Node;
 import com.example.android.kubernetesclient.models.Pod;
 import com.example.android.kubernetesclient.models.Service;
 
@@ -89,6 +90,46 @@ public class KubernetesClient {
                 if (!services.isEmpty()) {
                     ServicesAdapter adapter = (ServicesAdapter) servicesGridView.getAdapter();
                     adapter.setServices(services);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
+                Log.e("Error getting pods:", t.toString());
+            }
+        });
+    }
+
+    public void getNodes(final GridView nodesGridView) {
+        Call<KubernetesResourceResponse> call = this.service.getNodes();
+        Log.d("Item", "Pornesc call");
+        call.enqueue(new Callback<KubernetesResourceResponse>() {
+            @Override
+            public void onResponse(Call<KubernetesResourceResponse> call,
+                                   Response<KubernetesResourceResponse> response) {
+
+                List<Node> nodes = new ArrayList<>();
+                if (response.body() != null) {
+                    for (KubernetesResourceResponse.KubeResource item : response.body().getItems()) {
+                        Integer cpuNo = Integer.parseInt(item.getStatus().getCapacity().getCpu());
+                        String memoryString = item.getStatus().getCapacity().getMemory();
+                        Integer memory = Integer.parseInt(memoryString.substring(0, memoryString.length()-2));
+                        Node node = new Node(item.getMetadata().getName(),
+                                item.getMetadata().getNamespace(), item.getMetadata().getUid(),
+                                item.getMetadata().getCreationTimestamp(), cpuNo, memory,
+                                item.getStatus().getAddresses().get(0).getAddress(),
+                                item.getStatus().getAddresses().get(1).getAddress(),
+                                item.getStatus().getNodeInfo().getOsImage(),
+                                item.getStatus().getNodeInfo().getKernelVersion(),
+                                item.getStatus().getNodeInfo().getArchitecture());
+                        nodes.add(node);
+                    }
+                }
+
+                if (!nodes.isEmpty()) {
+                    NodesAdapter adapter = (NodesAdapter) nodesGridView.getAdapter();
+                    adapter.setNodes(nodes);
                     adapter.notifyDataSetChanged();
                 }
             }

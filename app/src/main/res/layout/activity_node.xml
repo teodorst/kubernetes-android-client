@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PodActivity">
+    tools:context=".NodeActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -27,15 +27,15 @@
             android:weightSum="3">
 
             <ImageView
-                android:id="@+id/pod_name_label"
+                android:id="@+id/node_name_label"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@drawable/pod"
+                android:src="@drawable/node"
                 android:textAlignment="viewEnd" />
 
             <TextView
-                android:id="@+id/pod_name"
+                android:id="@+id/node_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -55,7 +55,7 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/pod_uid_label"
+                android:id="@+id/node_uid_label"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -66,7 +66,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/pod_uid"
+                android:id="@+id/node_uid"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -85,18 +85,18 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/pod_namespace_label"
+                android:id="@+id/node_os_label"
                 android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/namespace"
+                android:text="@string/os"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/pod_namespace"
+                android:id="@+id/node_os"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -115,19 +115,19 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/pod_createdat_label"
+                android:id="@+id/node_cpus_label"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/created_at"
+                android:text="@string/cpus"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/pod_createdat"
+                android:id="@+id/node_cpus"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|center"
@@ -140,33 +140,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="38dp"
             android:layout_marginTop="@dimen/detailed_margin_top"
             android:orientation="horizontal"
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/pod_status_label"
+                android:id="@+id/node_memory_label"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/status"
+                android:text="@string/memory"
                 android:textAlignment="viewEnd"
                 android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/pod_status"
+            <TextView
+                android:id="@+id/node_memory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
                 android:layout_weight="2"
-                android:src="@drawable/ic_launcher_background" />
+                android:gravity="center"
+                android:text="@string/placeholder"
+                android:textAlignment="center"
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
+
     </LinearLayout>
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/node_divider"
         android:layout_width="368dp"
         android:layout_height="3dp"
         android:layout_marginStart="8dp"
@@ -179,5 +185,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0" />
+
 
 </android.support.constraint.ConstraintLayout>

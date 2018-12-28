@@ -21,7 +21,9 @@
         <activity android:name=".PodsActivity" />
         <activity android:name=".PodActivity" />
         <activity android:name=".ServicesActivity" />
-        <activity android:name=".ServiceActivity"></activity>
+        <activity android:name=".ServiceActivity" />
+        <activity android:name=".NodesActivity" />
+        <activity android:name=".NodeActivity"></activity>
     </application>
 
 </manifest>

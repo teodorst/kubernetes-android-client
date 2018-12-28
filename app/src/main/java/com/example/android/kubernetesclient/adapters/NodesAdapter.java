@@ -7,46 +7,47 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.android.kubernetesclient.R;
+import com.example.android.kubernetesclient.models.Node;
 import com.example.android.kubernetesclient.models.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesAdapter extends BaseAdapter {
+public class NodesAdapter extends BaseAdapter {
 
     private Context c;
-    private List<Service> services;
+    private List<Node> nodes;
     private static LayoutInflater inflater=null;
 
-    public ServicesAdapter(Context c) {
+    public NodesAdapter(Context c) {
         this.c = c;
-        this.services = new ArrayList<>();
+        this.nodes = new ArrayList<>();
         this.inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public ServicesAdapter(Context c, List<Service> services) {
+    public NodesAdapter(Context c, List<Node> nodes) {
         this(c);
-        this.services = services;
+        this.nodes = nodes;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Node> getNodes() {
+        return nodes;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
     }
 
     public int getCount() {
-        return services.size();
+        return nodes.size();
     }
 
     public Object getItem(int position) {
-        return services.get(position);
+        return nodes.get(position);
     }
 
     public long getItemId(int position) {
-        return services.get(position).hashCode();
+        return nodes.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -64,9 +65,9 @@ public class ServicesAdapter extends BaseAdapter {
         holder.imageView = itemView.findViewById(R.id.item_image);
         holder.statusImageView = itemView.findViewById(R.id.status_image);
 
-        holder.textView.setText(services.get(position).getName());
+        holder.textView.setText(nodes.get(position).getName());
         holder.statusImageView.setVisibility(View.GONE);
-        holder.imageView.setImageResource(R.drawable.service);
+        holder.imageView.setImageResource(R.drawable.node);
 
         return itemView;
     }

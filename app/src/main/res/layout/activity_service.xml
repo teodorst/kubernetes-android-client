@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail_name"
+                android:textSize="@dimen/item_detail_name"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -63,7 +63,7 @@
                 android:gravity="center"
                 android:text="@string/uid"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,7 +74,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
 
         </LinearLayout>
 
@@ -93,7 +93,7 @@
                 android:gravity="center"
                 android:text="@string/namespace"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -104,7 +104,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
 
         </LinearLayout>
 
@@ -124,7 +124,7 @@
                 android:gravity="center"
                 android:text="@string/created_at"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,7 +154,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -166,7 +166,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
 
         <LinearLayout
@@ -184,7 +184,7 @@
                 android:gravity="center"
                 android:text="@string/protocol"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -196,7 +196,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
 
         <LinearLayout
@@ -214,7 +214,7 @@
                 android:gravity="center"
                 android:text="@string/port"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -226,7 +226,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
 
         <LinearLayout
@@ -244,7 +244,7 @@
                 android:gravity="center"
                 android:text="@string/targetPort"
                 android:textAlignment="viewEnd"
-                android:textSize="@dimen/service_detail"
+                android:textSize="@dimen/item_detail"
                 android:textStyle="bold" />
 
             <TextView
@@ -256,7 +256,7 @@
                 android:gravity="center"
                 android:text="@string/placeholder"
                 android:textAlignment="center"
-                android:textSize="@dimen/service_detail" />
+                android:textSize="@dimen/item_detail" />
         </LinearLayout>
 
     </LinearLayout>

@@ -10,4 +10,7 @@ public interface KubernetesAPIInterface {
 
     @GET("/api/v1/services")
     Call<KubernetesResourceResponse> getServices();
+
+    @GET("/api/v1/nodes")
+    Call<KubernetesResourceResponse> getNodes();
 }

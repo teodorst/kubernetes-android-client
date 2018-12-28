@@ -11,5 +11,8 @@
     <string name="protocol">Protocol:</string>
     <string name="port">Port:</string>
     <string name="targetPort">Target Port:</string>
+    <string name="cpus">CPUs:</string>
+    <string name="memory">Memory:</string>
+    <string name="os">OS:</string>
 
 </resources>

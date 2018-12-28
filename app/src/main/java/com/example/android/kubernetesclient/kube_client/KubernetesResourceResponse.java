@@ -86,8 +86,82 @@ public class KubernetesResourceResponse {
         @SerializedName("phase")
         String phase;
 
+        @SerializedName("capacity")
+        KubeCapacityResource capacity;
+
+        @SerializedName("addresses")
+        List<KubeAddressResource> addresses;
+
+        @SerializedName("nodeInfo")
+        KubeNodeInfoResource nodeInfo;
+
+        class KubeCapacityResource {
+            @SerializedName("cpu")
+            String cpu;
+            @SerializedName("memory")
+            String memory;
+
+            public String getCpu() {
+                return cpu;
+            }
+
+            public String getMemory() {
+                return memory;
+            }
+        }
+
+        class KubeAddressResource {
+            @SerializedName("type")
+            String type;
+            @SerializedName("addresses")
+            String address;
+
+            public String getType() {
+                return type;
+            }
+
+            public String getAddress() {
+                return address;
+            }
+        }
+
+        class KubeNodeInfoResource {
+            @SerializedName("kernelVersion")
+            String kernelVersion;
+
+            @SerializedName("osImage")
+            String osImage;
+
+            @SerializedName("architecture")
+            String architecture;
+
+            public String getKernelVersion() {
+                return kernelVersion;
+            }
+
+            public String getOsImage() {
+                return osImage;
+            }
+
+            public String getArchitecture() {
+                return architecture;
+            }
+        }
+
         public String getPhase() {
             return phase;
+        }
+
+        public KubeCapacityResource getCapacity() {
+            return capacity;
+        }
+
+        public List<KubeAddressResource> getAddresses() {
+            return addresses;
+        }
+
+        public KubeNodeInfoResource getNodeInfo() {
+            return nodeInfo;
         }
     }
 
