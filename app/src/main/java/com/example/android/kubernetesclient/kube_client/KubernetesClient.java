@@ -1,5 +1,6 @@
 package com.example.android.kubernetesclient.kube_client;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -71,9 +72,12 @@ public class KubernetesClient {
                 }
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
                 Log.e("Error getting pods:", t.toString());
+                emptyView.setText("Couldn't load pods. Try again later!");
+                podsGridView.setEmptyView(emptyView);
             }
         });
     }
@@ -115,9 +119,13 @@ public class KubernetesClient {
                 }
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
                 Log.e("Error getting pods:", t.toString());
+                emptyView.setText("Couldn't load services. Try again later!");
+                servicesGridView.setEmptyView(emptyView);
+
             }
         });
     }
