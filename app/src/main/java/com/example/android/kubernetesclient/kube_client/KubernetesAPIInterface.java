@@ -13,4 +13,7 @@ public interface KubernetesAPIInterface {
 
     @GET("/api/v1/nodes")
     Call<KubernetesResourceResponse> getNodes();
+
+    @GET("/api/v1/namespaces")
+    Call<KubernetesResourceResponse> getNamespaces();
 }

@@ -14,5 +14,9 @@
     <string name="cpus">CPUs:</string>
     <string name="memory">Memory:</string>
     <string name="os">OS:</string>
+    <string name="nodes">Nodes</string>
+    <string name="services">Services</string>
+    <string name="pods">Pods</string>
+    <string name="there_are_no_items_for_this_namespace">There are no items for this namespace</string>
 
 </resources>

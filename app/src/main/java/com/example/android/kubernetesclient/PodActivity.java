@@ -1,9 +1,7 @@
 package com.example.android.kubernetesclient;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,18 +9,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.android.kubernetesclient.chart_formatters.PodXChartFormatter;
+import com.example.android.kubernetesclient.kube_client.MetricsClient;
 import com.example.android.kubernetesclient.models.Pod;
 import com.example.android.kubernetesclient.utils.ChartUtils;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PodActivity extends AppCompatActivity {
 
@@ -34,7 +24,7 @@ public class PodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pod);
         Pod pod = loadPod();
         displayPodData(pod);
-        displayPodMetrics("1", "CPU");
+        displayChart("CPU");
         setDataForDropdown(pod);
     }
 
@@ -50,7 +40,13 @@ public class PodActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                loadMetricsAndUpdateChart(dropdownOptions[position], pod.getUid());
+                LineChart chart = findViewById(R.id.pod_chart);
+
+                long endTimestamp = System.currentTimeMillis() / 1000;
+                long currentHour = ((int)(endTimestamp / 3600)) * 3600;
+                long startTimestamp = currentHour - 7 * 24 * 3600;
+                new MetricsClient().getMetrics(pod.getName(), startTimestamp, endTimestamp, chart,
+                        dropdownOptions[position]);
             }
 
             @Override
@@ -59,19 +55,6 @@ public class PodActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    public void loadMetricsAndUpdateChart(String metricsType, String podId) {
-        Log.d("Reincarc graficul", metricsType);
-        LineChart chart = findViewById(R.id.pod_chart);
-        List<Entry> entries = ChartUtils.loadDataForGraph(metricsType, podId);
-
-        LineDataSet dataSet = new LineDataSet(entries, metricsType + " usage");
-        ChartUtils.styleDataSet(dataSet);
-        LineData lineData = new LineData(dataSet);
-        chart.setData(lineData);
-        chart.invalidate();
-        chart.notifyDataSetChanged();
     }
 
     public void displayPodData(Pod pod) {
@@ -96,16 +79,9 @@ public class PodActivity extends AppCompatActivity {
         podStatusView.setImageResource(podImageResourceId);
     }
 
-    public void displayPodMetrics(String podId, String metricsType) {
+    public void displayChart(String metricsType) {
         LineChart chart = findViewById(R.id.pod_chart);
-        ChartUtils.styleChart(chart);
-
-        List<Entry> entries = ChartUtils.loadDataForGraph(metricsType, podId);
-        LineDataSet dataSet = new LineDataSet(entries, "CPU usage");
-        ChartUtils.styleDataSet(dataSet);
-
-        LineData lineData = new LineData(dataSet);
-        chart.setData(lineData);
+        ChartUtils.styleChart(chart, metricsType);
     }
 
 }

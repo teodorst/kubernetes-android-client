@@ -1,14 +1,22 @@
 package com.example.android.kubernetesclient.kube_client;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.android.kubernetesclient.adapters.NodesAdapter;
 import com.example.android.kubernetesclient.adapters.PodsAdapter;
 import com.example.android.kubernetesclient.adapters.ServicesAdapter;
+import com.example.android.kubernetesclient.models.Namespace;
 import com.example.android.kubernetesclient.models.Node;
 import com.example.android.kubernetesclient.models.Pod;
 import com.example.android.kubernetesclient.models.Service;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +39,7 @@ public class KubernetesClient {
         this.service = retrofit.create(KubernetesAPIInterface.class);
     }
 
-    public void getPods(final GridView podsGridView) {
+    public void getPods(final GridView podsGridView, String namespace, TextView emptyView) {
         Call<KubernetesResourceResponse> call = this.service.getPods();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {
@@ -48,11 +56,18 @@ public class KubernetesClient {
                     }
                 }
 
+                if (!namespace.equals("All")) {
+                    pods = Lists.newArrayList(Collections2.filter(
+                            pods, p -> p.getNamespace().equals(namespace)));
+                }
 
                 if (!pods.isEmpty()) {
                     PodsAdapter adapter = (PodsAdapter) podsGridView.getAdapter();
                     adapter.setPods(pods);
                     adapter.notifyDataSetChanged();
+                    emptyView.setVisibility(View.GONE);
+                } else {
+                    podsGridView.setEmptyView(emptyView);
                 }
             }
 
@@ -63,7 +78,7 @@ public class KubernetesClient {
         });
     }
 
-    public void getServices(final GridView servicesGridView) {
+    public void getServices(final GridView servicesGridView, final String namespace, TextView emptyView) {
         Call<KubernetesResourceResponse> call = this.service.getServices();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {
@@ -86,11 +101,17 @@ public class KubernetesClient {
                     }
                 }
 
+                if (!namespace.equals("All")) {
+                    services = Lists.newArrayList(Collections2.filter(
+                            services, s -> s.getNamespace().equals(namespace)));
+                }
 
                 if (!services.isEmpty()) {
                     ServicesAdapter adapter = (ServicesAdapter) servicesGridView.getAdapter();
                     adapter.setServices(services);
                     adapter.notifyDataSetChanged();
+                } else {
+                    servicesGridView.setEmptyView(emptyView);
                 }
             }
 
@@ -141,4 +162,35 @@ public class KubernetesClient {
         });
     }
 
+    public void getNamespaces(final Spinner spinner, final List<String> namespaces) {
+        Call<KubernetesResourceResponse> call = this.service.getNamespaces();
+        Log.d("Item", "Pornesc call");
+        call.enqueue(new Callback<KubernetesResourceResponse>() {
+            @Override
+            public void onResponse(Call<KubernetesResourceResponse> call,
+                                   Response<KubernetesResourceResponse> response) {
+
+                List<Namespace> namespacesFromNetwork = new ArrayList<>();
+                if (response.body() != null) {
+                    for (KubernetesResourceResponse.KubeResource item : response.body().getItems()) {
+                        Namespace namespace = new Namespace(item.getMetadata().getName());
+                        namespacesFromNetwork.add(namespace);
+                    }
+                }
+
+                if (!namespacesFromNetwork.isEmpty()) {
+                    for (Namespace namespace : namespacesFromNetwork) {
+                        namespaces.add(namespace.getName());
+                    }
+
+                    ((BaseAdapter)spinner.getAdapter()).notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
+                Log.e("Error getting pods:", t.toString());
+            }
+        });
+    }
 }
