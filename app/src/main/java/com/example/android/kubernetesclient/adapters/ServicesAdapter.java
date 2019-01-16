@@ -1,74 +1,103 @@
 package com.example.android.kubernetesclient.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.kubernetesclient.R;
+import com.example.android.kubernetesclient.ServiceActivity;
 import com.example.android.kubernetesclient.models.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesAdapter extends BaseAdapter {
+public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
 
-    private Context c;
-    private List<Service> services;
-    private static LayoutInflater inflater=null;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        // Your holder should contain a member variable
+        // for any view that will be set as you render a row
+        public TextView nameTextView;
+        public ImageView elementImageView;
+        public ImageView statusImageView;
+        public Context c;
+        public Service service;
 
-    public ServicesAdapter(Context c) {
-        this.c = c;
-        this.services = new ArrayList<>();
-        this.inflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        public ViewHolder(View itemView, Context c) {
+            super(itemView);
+
+            nameTextView = itemView.findViewById(R.id.item_name_textview);
+            elementImageView = itemView.findViewById(R.id.item_image);
+            statusImageView = itemView.findViewById(R.id.status_image);
+            this.c = c;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), ServiceActivity.class);
+            intent.putExtra("service", service);
+            view.getContext().startActivity(intent);
+        }
     }
 
-    public ServicesAdapter(Context c, List<Service> services) {
-        this(c);
+    // Store a member variable for the services
+    private List<Service> services;
+
+    public ServicesAdapter(List<Service> services) {
         this.services = services;
     }
 
-    public List<Service> getServices() {
-        return services;
+    // Usually involves inflating a layout from XML and returning the holder
+    @Override
+    public ServicesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        // Inflate the custom layout
+        View contactView = inflater.inflate(R.layout.gridlayout_item, parent, false);
+
+        // Return a new holder instance
+        ViewHolder viewHolder = new ViewHolder(contactView, context);
+        return viewHolder;
+    }
+
+    // Involves populating data into the item through holder
+    @Override
+    public void onBindViewHolder(@NonNull ServicesAdapter.ViewHolder viewHolder, int position) {
+        // Get the data model based on position
+        Service service = services.get(position);
+
+
+        // Set item views based on your views and data model
+        TextView nameTextView = viewHolder.nameTextView;
+        nameTextView.setText(service.getName());
+
+        ImageView elementImageView = viewHolder.elementImageView;
+        elementImageView.setImageResource(R.drawable.service);
+
+        ImageView statusImageView = viewHolder.statusImageView;
+        statusImageView.setVisibility(View.GONE);
+
+        viewHolder.service = services.get(position);
+    }
+
+    // Returns the total count of items in the list
+    @Override
+    public int getItemCount() {
+        return services.size();
     }
 
     public void setServices(List<Service> services) {
         this.services = services;
     }
 
-    public int getCount() {
-        return services.size();
-    }
-
-    public Object getItem(int position) {
-        return services.get(position);
-    }
-
     public long getItemId(int position) {
         return services.get(position).hashCode();
-    }
-
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        Holder holder = new Holder();
-        View itemView;
-
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            itemView = inflater.inflate(R.layout.gridlayout_item, null);
-        } else {
-            itemView = convertView;
-        }
-
-        holder.textView = itemView.findViewById(R.id.item_text);
-        holder.imageView = itemView.findViewById(R.id.item_image);
-        holder.statusImageView = itemView.findViewById(R.id.status_image);
-
-        holder.textView.setText(services.get(position).getName());
-        holder.statusImageView.setVisibility(View.GONE);
-        holder.imageView.setImageResource(R.drawable.service);
-
-        return itemView;
     }
 
 }

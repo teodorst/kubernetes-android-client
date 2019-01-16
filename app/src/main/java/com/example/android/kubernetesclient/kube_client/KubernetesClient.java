@@ -1,6 +1,7 @@
 package com.example.android.kubernetesclient.kube_client;
 
 import android.annotation.SuppressLint;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -39,7 +40,7 @@ public class KubernetesClient {
         this.service = retrofit.create(KubernetesAPIInterface.class);
     }
 
-    public void getPods(final GridView podsGridView, String namespace, TextView emptyView) {
+    public void getPods(final RecyclerView podsRecyclerGridView, String namespace, TextView emptyView) {
         Call<KubernetesResourceResponse> call = this.service.getPods();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {
@@ -62,12 +63,12 @@ public class KubernetesClient {
                 }
 
                 if (!pods.isEmpty()) {
-                    PodsAdapter adapter = (PodsAdapter) podsGridView.getAdapter();
+                    PodsAdapter adapter = (PodsAdapter) podsRecyclerGridView.getAdapter();
                     adapter.setPods(pods);
                     adapter.notifyDataSetChanged();
                     emptyView.setVisibility(View.GONE);
                 } else {
-                    podsGridView.setEmptyView(emptyView);
+
                 }
             }
 
@@ -76,12 +77,12 @@ public class KubernetesClient {
             public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
                 Log.e("Error getting pods:", t.toString());
                 emptyView.setText("Couldn't load pods. Try again later!");
-                podsGridView.setEmptyView(emptyView);
+//                podsRecyclerGridView.setEmptyView(emptyView);
             }
         });
     }
 
-    public void getServices(final GridView servicesGridView, final String namespace, TextView emptyView) {
+    public void getServices(final RecyclerView servicesGridView, final String namespace, TextView emptyView) {
         Call<KubernetesResourceResponse> call = this.service.getServices();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {
@@ -114,7 +115,7 @@ public class KubernetesClient {
                     adapter.setServices(services);
                     adapter.notifyDataSetChanged();
                 } else {
-                    servicesGridView.setEmptyView(emptyView);
+
                 }
             }
 
@@ -123,13 +124,12 @@ public class KubernetesClient {
             public void onFailure(Call<KubernetesResourceResponse> call, Throwable t) {
                 Log.e("Error getting pods:", t.toString());
                 emptyView.setText("Couldn't load services. Try again later!");
-                servicesGridView.setEmptyView(emptyView);
 
             }
         });
     }
 
-    public void getNodes(final GridView nodesGridView) {
+    public void getNodes(final RecyclerView nodesGridView) {
         Call<KubernetesResourceResponse> call = this.service.getNodes();
         Log.d("Item", "Pornesc call");
         call.enqueue(new Callback<KubernetesResourceResponse>() {

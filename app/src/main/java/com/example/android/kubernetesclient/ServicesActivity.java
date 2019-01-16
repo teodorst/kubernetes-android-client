@@ -1,27 +1,29 @@
 package com.example.android.kubernetesclient;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.GridView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.android.kubernetesclient.adapters.ServicesAdapter;
 import com.example.android.kubernetesclient.kube_client.KubernetesClient;
-import com.example.android.kubernetesclient.models.Service;
+
+import java.util.ArrayList;
 
 public class ServicesActivity extends AppCompatActivity {
 
     String namespace;
+    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
 
+        gridLayoutManager = new GridLayoutManager(this, 3);
         namespace = loadNamespace();
         loadServices();
-        setItemListener();
     }
 
     public String loadNamespace() {
@@ -29,19 +31,12 @@ public class ServicesActivity extends AppCompatActivity {
     }
 
     public void loadServices() {
-        GridView servicesGridView = findViewById(R.id.services_gridview);
-        servicesGridView.setAdapter(new ServicesAdapter(this));
+        RecyclerView servicesRecyclerGridView = findViewById(R.id.services_recyclerview);
+        servicesRecyclerGridView.setAdapter(new ServicesAdapter(new ArrayList<>()));
+        servicesRecyclerGridView.setLayoutManager(gridLayoutManager);
+
         TextView emptyView = findViewById(R.id.services_empty_text_view);
-        new KubernetesClient().getServices(servicesGridView, namespace, emptyView);
+        new KubernetesClient().getServices(servicesRecyclerGridView, namespace, emptyView);
     }
 
-    public void setItemListener() {
-        final GridView servicesGridView = findViewById(R.id.services_gridview);
-        servicesGridView.setOnItemClickListener((parent, view, position, id) -> {
-            Service clickedService = (Service)servicesGridView.getAdapter().getItem(position);
-            Intent intent = new Intent(getBaseContext(), ServiceActivity.class);
-            intent.putExtra("service", clickedService);
-            startActivity(intent);
-        });
-    }
 }

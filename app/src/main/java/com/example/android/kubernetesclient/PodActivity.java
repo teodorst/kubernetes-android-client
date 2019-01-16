@@ -29,7 +29,7 @@ public class PodActivity extends AppCompatActivity {
     }
 
     public Pod loadPod() {
-        return (Pod)getIntent().getSerializableExtra("pod");
+        return (Pod)getIntent().getSerializableExtra("service");
     }
 
     public void setDataForDropdown(final Pod pod) {
