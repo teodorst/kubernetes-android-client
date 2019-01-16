@@ -116,7 +116,7 @@
             <TextView
                 android:id="@+id/pod_status_label"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/status"
@@ -151,14 +151,14 @@
     <Spinner
         android:id="@+id/pod_metrics_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/pod_chart"

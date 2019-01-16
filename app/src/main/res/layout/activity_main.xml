@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/podsButton"
-        android:layout_width="156dp"
-        android:layout_height="74dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="8dp"
@@ -25,8 +25,8 @@
 
     <Button
         android:id="@+id/servicesButton"
-        android:layout_width="155dp"
-        android:layout_height="74dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
@@ -41,8 +41,8 @@
 
     <Button
         android:id="@+id/nodesButton"
-        android:layout_width="155dp"
-        android:layout_height="74dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
@@ -57,8 +57,8 @@
 
     <Spinner
         android:id="@+id/namespaces_spinner"
-        android:layout_width="159dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="8dp"
@@ -83,8 +83,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="134dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="8dp"

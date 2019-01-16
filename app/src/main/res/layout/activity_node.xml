@@ -56,7 +56,7 @@
             <TextView
                 android:id="@+id/node_os_label"
                 android:layout_width="0dp"
-                android:layout_height="41dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/os"
@@ -152,7 +152,7 @@
     <Spinner
         android:id="@+id/node_metrics_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"

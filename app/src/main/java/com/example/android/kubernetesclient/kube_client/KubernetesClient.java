@@ -15,7 +15,6 @@ import com.example.android.kubernetesclient.models.Namespace;
 import com.example.android.kubernetesclient.models.Node;
 import com.example.android.kubernetesclient.models.Pod;
 import com.example.android.kubernetesclient.models.Service;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
@@ -33,7 +32,7 @@ public class KubernetesClient {
 
     public KubernetesClient() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://159.89.110.74:8001")
+                .baseUrl("http://159.89.30.67:8002")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
