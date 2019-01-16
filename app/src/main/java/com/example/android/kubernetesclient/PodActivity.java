@@ -45,8 +45,9 @@ public class PodActivity extends AppCompatActivity {
                 long endTimestamp = System.currentTimeMillis() / 1000;
                 long currentHour = ((int)(endTimestamp / 3600)) * 3600;
                 long startTimestamp = currentHour - 7 * 24 * 3600;
-                new MetricsClient().getMetrics(pod.getName(), startTimestamp, endTimestamp, chart,
-                        dropdownOptions[position]);
+                new MetricsClient().getMetrics(
+                        pod.getName(), startTimestamp, endTimestamp,
+                        ChartUtils.callbackToPopulateMetricsInUI(chart, dropdownOptions[position]));
             }
 
             @Override

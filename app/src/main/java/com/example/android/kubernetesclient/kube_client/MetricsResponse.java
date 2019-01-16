@@ -9,7 +9,7 @@ public class MetricsResponse {
     @SerializedName("metrics")
     private List<MetricResponse> metrics;
 
-    class MetricResponse {
+    public class MetricResponse {
         @SerializedName("memory_value")
         private Float memoryValue;
 

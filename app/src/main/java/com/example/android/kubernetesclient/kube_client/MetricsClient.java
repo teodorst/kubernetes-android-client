@@ -27,35 +27,13 @@ public class MetricsClient {
         this.service = retrofit.create(MetricsAPIInterface.class);
     }
 
-    public void getMetrics(String resourceName, long startTimestamp, long endTimestamp, final LineChart lineChart, final String metricsType) {
+    public void getMetrics(String resourceName, long startTimestamp, long endTimestamp,
+                           Callback<MetricsResponse> callback) {
         Call<MetricsResponse> call = this.service.getMetrics(resourceName,
                 Long.toString(startTimestamp), Long.toString(endTimestamp));
 
         Log.d("Item", "Pornesc call catre metrics");
-        call.enqueue(new Callback<MetricsResponse>() {
-            @Override
-            public void onResponse(Call<MetricsResponse> call,
-                                   Response<MetricsResponse> response) {
-
-                List<Metric> metrics = new ArrayList<>();
-                if (response.body() != null) {
-                    for (MetricsResponse.MetricResponse item : response.body().getMetrics()) {
-                        Metric metric = new Metric(item.getMemoryValue(), item.getCpuValue(), item.getTimestamp(), item.getResourceName());
-                        metrics.add(metric);
-                    }
-                }
-                Log.d("Metricile", metrics.toString());
-                if (lineChart != null) {
-                    ChartUtils.updateChartData(metrics, lineChart, metricsType);
-                    ChartUtils.styleLeftAxisChart(lineChart, metricsType);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MetricsResponse> call, Throwable t) {
-                Log.e("Error getting pods:", t.toString());
-            }
-        });
+        call.enqueue(callback);
     }
 
 }

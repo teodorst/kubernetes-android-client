@@ -12,7 +12,7 @@ public class KubernetesResourceResponse {
         return items;
     }
 
-    class KubeResource {
+    public class KubeResource {
 
         @SerializedName("metadata")
         KubeMetadataResource metadata;
@@ -41,7 +41,7 @@ public class KubernetesResourceResponse {
 
     }
 
-    class KubeMetadataResource {
+    public class KubeMetadataResource {
 
         @SerializedName("name")
         String name;
@@ -82,7 +82,7 @@ public class KubernetesResourceResponse {
 
     }
 
-    class KubeStatusResource {
+    public class KubeStatusResource {
         @SerializedName("phase")
         String phase;
 
@@ -95,7 +95,7 @@ public class KubernetesResourceResponse {
         @SerializedName("nodeInfo")
         KubeNodeInfoResource nodeInfo;
 
-        class KubeCapacityResource {
+        public class KubeCapacityResource {
             @SerializedName("cpu")
             String cpu;
             @SerializedName("memory")
@@ -110,7 +110,7 @@ public class KubernetesResourceResponse {
             }
         }
 
-        class KubeAddressResource {
+        public class KubeAddressResource {
             @SerializedName("type")
             String type;
             @SerializedName("addresses")
@@ -125,7 +125,7 @@ public class KubernetesResourceResponse {
             }
         }
 
-        class KubeNodeInfoResource {
+        public class KubeNodeInfoResource {
             @SerializedName("kernelVersion")
             String kernelVersion;
 
@@ -165,7 +165,7 @@ public class KubernetesResourceResponse {
         }
     }
 
-    class KubeSpecResource {
+    public class KubeSpecResource {
 
         @SerializedName("ports")
         List<KubePortResource> ports;
@@ -176,7 +176,7 @@ public class KubernetesResourceResponse {
         @SerializedName("type")
         String type;
 
-        class KubePortResource {
+        public class KubePortResource {
             @SerializedName("protocol")
             String protocol;
             @SerializedName("port")
